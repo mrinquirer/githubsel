@@ -1,0 +1,35 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class SeleniumExample {
+    public static void main(String[] args) {
+        // Set the path to the chromedriver executable
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver"); // Replace with the path to your chromedriver
+
+        // Set up Chrome options
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");  // Maximize window
+
+        // Initialize the WebDriver
+        WebDriver driver = new ChromeDriver(options);
+
+        try {
+            // Navigate to demoblaze
+            driver.get("https://www.demoblaze.com");
+
+            // Get the title of the page
+            String pageTitle = driver.getTitle();
+
+            // Verify the title
+            if (pageTitle.equals("STORE")) {
+                System.out.println("Page landed on correct website");
+            } else {
+                System.out.println("Page not landed on correct website");
+            }
+        } finally {
+            // Close the browser
+            driver.quit();
+        }
+    }
+}

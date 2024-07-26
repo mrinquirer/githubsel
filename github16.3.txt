@@ -1,0 +1,40 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class SeleniumExample {
+    public static void main(String[] args) {
+        // Set the path to the chromedriver executable
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver"); // Replace with the path to your chromedriver
+
+        // Set up Chrome options
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");  // Maximize window
+
+        // Initialize the WebDriver
+        WebDriver driver = new ChromeDriver(options);
+
+        try {
+            // Navigate to Wikipedia
+            driver.get("https://www.wikipedia.org");
+
+            // Find the search input field and enter the query "Artificial Intelligence"
+            WebElement searchInput = driver.findElement(By.id("searchInput"));
+            searchInput.sendKeys("Artificial Intelligence");
+            searchInput.submit();
+
+            // Wait for the search results to load and click on the "History" section link
+            WebElement historyLink = driver.findElement(By.linkText("History"));
+            historyLink.click();
+
+            // Get the title of the "History" section and print it
+            WebElement historySectionTitle = driver.findElement(By.id("History"));
+            System.out.println("Title of the section: " + historySectionTitle.getText());
+        } finally {
+            // Close the browser
+            driver.quit();
+        }
+    }
+}

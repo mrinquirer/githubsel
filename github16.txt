@@ -1,0 +1,31 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class GoogleReloadJava {
+
+    public static void main(String[] args) {
+        // Set the path to your Firefox webdriver (replace with your actual path)
+        System.setProperty("webdriver.gecko.driver", "/path/to/geckodriver");
+
+        // Create a new Firefox WebDriver instance
+        WebDriver driver = new FirefoxDriver();
+
+        // Maximize the browser window
+        driver.manage().window().maximize();
+
+        // Navigate to google.com
+        driver.get("https://www.google.com/");
+
+        // Get the current URL of the parent page
+        String currentUrl = driver.getCurrentUrl();
+
+        // Print the URL
+        System.out.println("Current URL: " + currentUrl);
+
+        // Reload the page
+        driver.navigate().refresh();
+
+        // Close the browser
+        driver.quit();
+    }
+}
